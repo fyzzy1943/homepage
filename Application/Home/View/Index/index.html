@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
+<body>{$ip}
+<div class="container">
+	<div class="row">
+		<div class="col-md-5">
+			<div class="input-group">
+				<input type="text" class="form-control" id="search_content" placeholder="Search for..." />
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="button" id="search_btn">Go!</button>
+				</span>
+			</div>
+		</div>
+		<div class="col-md-5">
+			ip:{$ipData.ip}<br />
+			country:{$ipData.country}<br />
+			province:{$ipData.province}<br />
+			city:{$ipData.city}<br />
+			district:{$ipData.district}<br />
+			carrier:{$ipData.carrier}<br />
+		</div>
+	</div>
+</div>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#search_btn').click(function(){
+		$con=$('#search_content').val();
+		window.open('http://www.baidu.com/s?wd='+$con);
+	});
+});
+</script>
+</body>
+</html>
