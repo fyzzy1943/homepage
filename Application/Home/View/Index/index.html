@@ -8,13 +8,19 @@
 <body>{$ip}
 <div class="container">
 	<div class="row">
+		<div class="col-md-1" style="background-color:#ccc;">
+			|||
+		</div>
 		<div class="col-md-5">
-			<div class="input-group">
-				<input type="text" class="form-control" id="search_content" placeholder="Search for..." />
-				<span class="input-group-btn">
-					<button class="btn btn-default" type="button" id="search_btn">Go!</button>
-				</span>
-			</div>
+			<form id="search">
+				<div class="input-group">
+					<span class="input-group-addon">百度</span>
+					<input type="text" class="form-control" id="search_content" />
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Search</button>
+					</span>
+				</div>
+			</form>
 		</div>
 		<div class="col-md-5">
 			ip:{$ipData.ip}<br />
@@ -30,9 +36,13 @@
 <script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
-	$('#search_btn').click(function(){
+	$('#search_content').focus();
+	
+	$('#search').submit(function(){
 		$con=$('#search_content').val();
 		window.open('http://www.baidu.com/s?wd='+$con);
+		
+		return false;
 	});
 });
 </script>
