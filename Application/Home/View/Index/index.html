@@ -3,48 +3,37 @@
 <head>
 	<meta charset="utf-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__ROOT__/Public/css/bootstrap.min.css">
 </head>
-<body>{$ip}
+<body>
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <div class="container">
 	<div class="row">
 		<div class="col-md-1" style="background-color:#ccc;">
-			|||
+			<div class="btn-group-vertical btn-group-lg" role="tablist" aria-label="..." style="">
+				<a class="btn btn-default" href="#home" aria-controls="home" role="tab" data-toggle="tab">1</a>
+			    <a href="#profile" class="btn btn-default" aria-controls="profile" role="tab" data-toggle="tab">2</a>
+			    <a href="#messages" class="btn btn-default" aria-controls="messages" role="tab" data-toggle="tab">3</a>
+			    <a href="#settings" class="btn btn-default" aria-controls="settings" role="tab" data-toggle="tab">4</a>
+			</div>
 		</div>
-		<div class="col-md-5">
-			<form id="search">
-				<div class="input-group">
-					<span class="input-group-addon">百度</span>
-					<input type="text" class="form-control" id="search_content" />
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">Search</button>
-					</span>
+		<div class="col-md-11">
+			<div class="tab-content">
+			    <div role="tabpanel" class="tab-pane fade in active" id="home">
+					<include file="search" />
 				</div>
-			</form>
-		</div>
-		<div class="col-md-5">
-			ip:{$ipData.ip}<br />
-			country:{$ipData.country}<br />
-			province:{$ipData.province}<br />
-			city:{$ipData.city}<br />
-			district:{$ipData.district}<br />
-			carrier:{$ipData.carrier}<br />
+			    <div role="tabpanel" class="tab-pane fade" id="profile">
+					<include file="book" />
+				</div>
+			    <div role="tabpanel" class="tab-pane fade" id="messages">
+					<include file="birthday" />
+				</div>
+			    <div role="tabpanel" class="tab-pane fade" id="settings">..44.</div>
+			</div>
 		</div>
 	</div>
 </div>
-<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<script>
-$(document).ready(function(){
-	$('#search_content').focus();
-	
-	$('#search').submit(function(){
-		$con=$('#search_content').val();
-		window.open('http://www.baidu.com/s?wd='+$con);
-		
-		return false;
-	});
-});
-</script>
+
 </body>
 </html>

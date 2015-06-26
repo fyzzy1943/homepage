@@ -1,0 +1,41 @@
+
+<div class="row">
+	<div class="col-md-7">
+		<table class="table table-hover">
+			<tr>
+				<th>ID</th>
+				<th>NAME</th>
+				<th>REMARKS</th>
+			</tr>
+			<foreach name="books" item="book">
+				<tr>
+					<td>{$book.id}</td>
+					<td>{$book.b_name}</td>
+					<td>{$book.b_remarks}</td>
+				</tr>
+			</foreach>
+		</table>
+	</div>
+	<div class="col-md-5">
+		<form class="form-inline" id="book_insert" role="form">
+			<input class="form-control" id="book_name" type="text" />
+			<button class="btn btn-default" type="submit">提交</button>
+		</form>
+	</div>
+</div>
+
+<script>
+$(function(){
+	$('#book_insert').submit(function(){
+		$.post('__MODULE__/Book/insert',{
+			"book_name":$('#book_name').val()
+		},function(data, status){
+			if(data=='failed'){
+				alert('添加失败');
+			}
+		},'json');
+		
+		return false;
+	});
+});
+</script>

@@ -1,0 +1,31 @@
+<div class="row">
+	<div class="col-md-7">
+		<form id="search" role="form">
+			<div class="input-group">
+				<span class="input-group-addon">百度</span>
+				<input type="text" class="form-control" id="search_content" />
+				<span class="input-group-btn">
+					<button class="btn btn-default" type="submit">Search</button>
+				</span>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-5">
+		ip:{$ipData.ip}<br /> country:{$ipData.country}<br />
+		province:{$ipData.province}<br /> city:{$ipData.city}<br />
+		district:{$ipData.district}<br /> carrier:{$ipData.carrier}<br />
+	</div>
+</div>
+
+<script>
+$(document).ready(function(){
+	$('#search_content').focus();
+	
+	$('#search').submit(function(){
+		$con=$('#search_content').val();
+		window.open('http://www.baidu.com/s?wd='+$con);
+		
+		return false;
+	});
+});
+</script>
