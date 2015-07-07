@@ -1,17 +1,17 @@
 
 <div class="row">
 	<div class="col-md-7">
-		<table class="table table-hover">
+		<table id="book_table" class="table table-hover" width="100%">
 			<tr>
-				<th>ID</th>
-				<th>NAME</th>
-				<th>REMARKS</th>
+				<th width="10%">ID</th>
+				<th width="30%">NAME</th>
+				<th width="60%">REMARKS</th>
 			</tr>
 			<foreach name="books" item="book">
-				<tr>
-					<td>{$book.id}</td>
-					<td>{$book.b_name}</td>
-					<td>{$book.b_remarks}</td>
+				<tr id="{$book.id}">
+					<td style="word-break:break-all;word-wrap:break-word;">{$book.id}</td>
+					<td style="word-break:break-all;word-wrap:break-word;">{$book.b_name}</td>
+					<td style="word-break:break-all;word-wrap:break-word;">{$book.b_remarks}33</td>
 				</tr>
 			</foreach>
 		</table>
@@ -26,6 +26,8 @@
 
 <script>
 $(function(){
+	var isEdit=false;
+	
 	$('#book_insert').submit(function(){
 		$.post('__MODULE__/Book/insert',{
 			"book_name":$('#book_name').val()
@@ -36,6 +38,19 @@ $(function(){
 		},'json');
 		
 		return false;
+	});
+	
+	$('#book_table tr:not(#book_table tr:first)').click(function(){
+		if(!isEdit){
+			isEdit=true;
+			$(this).find('td:eq(2)').html('<textarea id="re_'+$(this).attr('id')+'" style="width:100%;overflow-y:visible;">'+$(this).find('td:eq(2)').html()+'</textarea>');
+			$('#re_'+$(this).attr('id')).focus().blur(function(){
+				$(this).parent().html($(this).val());
+//				alert($(this).val());
+				isEdit=false;
+			});
+			
+		}
 	});
 });
 </script>
