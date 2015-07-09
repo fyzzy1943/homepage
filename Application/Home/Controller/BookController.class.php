@@ -17,4 +17,19 @@ class BookController extends Controller{
             $this->ajaxReturn('failed');
         }
     }
+    
+    public function UpdateRemarks(){
+        $book_id=I('book_id');
+        $book_remarks=I('book_remarks');
+        
+        $Books=M('books');
+        $data['id']=$book_id;
+        $data['b_remarks']=$book_remarks;
+        $result=$Books->data($data)->save();
+        if($result===false){
+            $this->ajaxReturn('failed');
+        }else{
+            $this->ajaxReturn('success');
+        }
+    }
 }

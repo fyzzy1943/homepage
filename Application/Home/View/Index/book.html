@@ -11,7 +11,7 @@
 				<tr id="{$book.id}">
 					<td style="word-break:break-all;word-wrap:break-word;">{$book.id}</td>
 					<td style="word-break:break-all;word-wrap:break-word;">{$book.b_name}</td>
-					<td style="word-break:break-all;word-wrap:break-word;">{$book.b_remarks}33</td>
+					<td style="word-break:break-all;word-wrap:break-word;">{$book.b_remarks}</td>
 				</tr>
 			</foreach>
 		</table>
@@ -43,10 +43,21 @@ $(function(){
 	$('#book_table tr:not(#book_table tr:first)').click(function(){
 		if(!isEdit){
 			isEdit=true;
-			$(this).find('td:eq(2)').html('<textarea id="re_'+$(this).attr('id')+'" style="width:100%;overflow-y:visible;">'+$(this).find('td:eq(2)').html()+'</textarea>');
-			$('#re_'+$(this).attr('id')).focus().blur(function(){
-				$(this).parent().html($(this).val());
-//				alert($(this).val());
+			var book_id=$(this).attr('id');
+			var $book_td=$(this).find('td:eq(2)');
+			$book_td.html('<textarea id="re_'+book_id+'" style="width:100%;overflow-y:visible;">'+$(this).find('td:eq(2)').html()+'</textarea>');
+			$('#re_'+book_id).focus().blur(function(){
+				var remarks=$(this).val()
+				$.post('__MODULE__/Book/UpdateRemarks',{
+					"book_id":book_id,
+					"book_remarks":remarks
+				},function(data, status){
+					if(data=='success'){
+						$book_td.html(remarks);
+					}else{
+						alert('update failed');
+					}
+				}, 'json');
 				isEdit=false;
 			});
 			
