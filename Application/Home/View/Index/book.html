@@ -11,7 +11,7 @@
 				<tr id="{$book.id}">
 					<td style="word-break:break-all;word-wrap:break-word;">{$book.id}</td>
 					<td style="word-break:break-all;word-wrap:break-word;">{$book.b_name}</td>
-					<td style="word-break:break-all;word-wrap:break-word;">{$book.b_remarks}</td>
+					<td style="word-break:break-all;word-wrap:break-word;" onclick="changeRemarks();">{$book.b_remarks}</td>
 				</tr>
 			</foreach>
 		</table>
@@ -34,11 +34,21 @@ $(function(){
 		},function(data, status){
 			if(data=='failed'){
 				alert('添加失败');
+			}else{
+				var $tr=$('<tr id="'+data+'"></tr>');
+				var $td1=$('<td style="word-break:break-all;word-wrap:break-word;">'+data+'</td>');
+				var $td2=$('<td style="word-break:break-all;word-wrap:break-word;">'+$('#book_name').val()+'</td>');
+				var $td3=$('<td style="word-break:break-all;word-wrap:break-word;"></td>');
+				$tr.append($td1);
+				$tr.append($td2);
+				$tr.append($td3);
+				$('#book_table').append($tr);
 			}
 		},'json');
 		
 		return false;
 	});
+	
 	
 	$('#book_table tr:not(#book_table tr:first)').click(function(){
 		if(!isEdit){
@@ -60,8 +70,7 @@ $(function(){
 				}, 'json');
 				isEdit=false;
 			});
-			
-		}
+		}//.if
 	});
 });
 </script>

@@ -12,7 +12,7 @@ class BookController extends Controller{
         $id=$Books->data($data)->add();
         
         if($id>0){
-            $this->ajaxReturn('success');
+            $this->ajaxReturn($id);
         }else{
             $this->ajaxReturn('failed');
         }
